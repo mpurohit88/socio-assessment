@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Dropdown from './components/Dropdown';
+
+export default function App() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch('https://swapi.dev/api/planets')
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Bad response from server');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            setData(data.results);
+        });
+    }, []);
+
+    return (
+        <div>
+            <Dropdown label="Planet Name" values={data} setSelctedValue={() => {}}/>
+            <h1>Hello to React app</h1>
+        </div>
+    )
 }
-
-export default App;

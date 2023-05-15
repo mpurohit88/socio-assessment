@@ -49,7 +49,6 @@ export default function App() {
             autoComplete="off"
         >
             <Dropdown label="Planet Name" values={data} setSelctedValue={(selectedPlanet) => { fetchPeople(selectedPlanet);}}/>
-            
             {
                 isLoading ? <Box sx={{ display: 'flex' }}>
                 <CircularProgress />

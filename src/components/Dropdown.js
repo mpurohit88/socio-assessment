@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
+
 import { FormControl, InputLabel, Select, MenuItem, Box } from '@mui/material';
 
 export default function Dropdown({label, values, setSelctedValue, selctedValue}) {
+    
     const handleChange = (event) => {
         setSelctedValue(event.target.value);
     }

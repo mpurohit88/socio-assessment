@@ -16,35 +16,25 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
-interface TablePaginationActionsProps {
-  count: number;
-  page: number;
-  rowsPerPage: number;
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement>,
-    newPage: number,
-  ) => void;
-}
-
-function TablePaginationActions(props: TablePaginationActionsProps) {
+function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
   const handleFirstPageButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
+    event,
   ) => {
     onPageChange(event, 0);
   };
 
-  const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleBackButtonClick = (event) => {
     onPageChange(event, page - 1);
   };
 
-  const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleNextButtonClick = (event) => {
     onPageChange(event, page + 1);
   };
 
-  const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLastPageButtonClick = (event) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
@@ -91,8 +81,8 @@ export default function CustomPaginationActionsTable({rows}) {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
+    event,
+    newPage,
   ) => {
     setPage(newPage);
   };
@@ -105,7 +95,7 @@ export default function CustomPaginationActionsTable({rows}) {
   };
 
   if(rows.length === 0) {
-    return 'No people found for selected planet, please select other planet and try again';
+    return <Box sx={{ display: 'flex' }}>No people found for selected planet, please select other planet and try again</Box>
   }
 
   return (

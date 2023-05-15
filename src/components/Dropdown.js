@@ -6,7 +6,14 @@ export default function Dropdown({label, values, setSelctedValue, selctedValue})
         setSelctedValue(event.target.value);
     }
 
-    return  <Box sx={{ minWidth: 120 }}>
+    return  <Box
+            component="form"
+            sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+        >
         <FormControl fullWidth>
             <InputLabel variant="standard" id="demo-simple-select-label">{label}</InputLabel>
             <Select
@@ -16,7 +23,7 @@ export default function Dropdown({label, values, setSelctedValue, selctedValue})
                 label={label}
                 onChange={handleChange}
             >
-                {values.map(value => <MenuItem value={value.name}>{value.name}</MenuItem>)}
+                {values.map(value => <MenuItem value={value}>{value.name}</MenuItem>)}
             </Select>
         </FormControl>
     </Box>
